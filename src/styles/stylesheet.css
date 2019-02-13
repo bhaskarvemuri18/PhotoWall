@@ -52,3 +52,12 @@ h1{
     line-height: 2;
     padding: 5px;
 }
+
+.add-icon{
+    margin: 30px auto;
+    display: table;
+    padding: 30px;
+    background: url("https://www.shareicon.net/data/128x128/2016/09/10/828165_add_512x512.png");
+    background-size: contain;
+    border: none
+}

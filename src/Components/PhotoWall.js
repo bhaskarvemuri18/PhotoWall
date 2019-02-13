@@ -5,9 +5,14 @@ import PropTypes from 'prop-types'
 // Stateless Functions
 
 function PhotoWall(props) {
-    return <div className="photo-grid">
-        {props.posts.map((post, index) => <Photo key={index} post={post} onRemovePhoto={props.onRemovePhoto} />)}
+    return <div>
+        <a className='add-icon' onClick={props.onNavigate} href="#AddPhoto"> </a>
+        {/* <button onClick={props.onNavigate} className='add-icon'> </button> */}
+        <div className="photo-grid">
+            {props.posts.map((post, index) => <Photo key={index} post={post} onRemovePhoto={props.onRemovePhoto} />)}
+        </div>
     </div>
+
 }
 
 PhotoWall.propTypes = {

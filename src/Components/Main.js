@@ -11,17 +11,17 @@ class Main extends Component {
         super();
         this.state = {
             posts: [{
-                id: "0",
+                id: 0,
                 description: "Red Apples!",
                 imageLink: "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX1065583.jpg"
             },
             {
-                id: "1",
+                id: 1,
                 description: "Mangoes yummy!!",
                 imageLink: "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5470556.jpg"
             },
             {
-                id: "2",
+                id: 2,
                 description: "Juicy Watermelons!!",
                 imageLink: "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX14919593.jpg"
             }],
@@ -34,6 +34,12 @@ class Main extends Component {
         console.log(postRemoved.description);
         this.setState((state) => ({
             posts: state.posts.filter(post => post !== postRemoved)
+        }))
+    }
+
+    addPhoto(postSubmitted) {
+        this.setState(state => ({
+            posts: state.posts.concat([postSubmitted])
         }))
     }
 
@@ -50,7 +56,7 @@ class Main extends Component {
     }
 
     render() {
-        console.log('render')
+        console.log(this.state.posts)
         return (
             <div>
                 <Route exact path="/" render={() => (
@@ -60,10 +66,14 @@ class Main extends Component {
                     </div>
                 )} />
 
-                <Route path='/AddPhoto' component={AddPhoto} />
-            </div >)
+                <Route path='/AddPhoto' render={({ history }) => (
+                    <AddPhoto onAddPhoto={(addedPost) => {
+                        this.addPhoto(addedPost)
+                        history.push('./')
+                    }} />
+                )} />
+            </div>)
     }
-
 }
 
 

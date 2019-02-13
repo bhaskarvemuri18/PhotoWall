@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types'
 
 // Stateless Functions
 
@@ -14,6 +14,11 @@ function Photo(props) {
             }}> Remove </button>
         </div>
     </figure>
+}
+
+Photo.propTypes = {
+    post: PropTypes.object.isRequired,
+    onRemovePhoto: PropTypes.func.isRequired
 }
 
 export default Photo

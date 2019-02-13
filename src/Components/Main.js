@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Title from './Title'
 import PhotoWall from './PhotoWall'
 import AddPhoto from './AddPhoto'
+import { Route } from 'react-router-dom'
 
 
 class Main extends Component {
@@ -24,10 +25,8 @@ class Main extends Component {
                 description: "Juicy Watermelons!!",
                 imageLink: "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX14919593.jpg"
             }],
-            screen: 'photos' // photos, addPhoto
         }
         this.removePhoto = this.removePhoto.bind(this);
-        this.navigate = this.navigate.bind(this);
     }
 
 
@@ -38,12 +37,6 @@ class Main extends Component {
         }))
     }
 
-
-    navigate() {
-        this.setState({
-            screen: 'addPhoto'
-        })
-    }
 
     // Lifecycle Method
     componentDidMount() {
@@ -58,23 +51,17 @@ class Main extends Component {
 
     render() {
         console.log('render')
-        return <div>
-
-            {
-                this.state.screen === 'photos' && (
+        return (
+            <div>
+                <Route exact path="/" render={() => (
                     <div>
                         <Title title={"FruitWall"} />
                         <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} onNavigate={this.navigate} />
                     </div>
-                )
-            }
-            {
-                this.state.screen === 'addPhoto' && (
-                    < div >
-                        <AddPhoto />
-                    </div>)
-            }
-        </div>
+                )} />
+
+                <Route path='/AddPhoto' component={AddPhoto} />
+            </div >)
     }
 
 }
